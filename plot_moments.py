@@ -9,7 +9,7 @@ sig_file = 'hhskim.PowPyth8_AU2CT10_VBFH125_tautauhh.mc12a.root'
 
 vbf_selection = Cut('tau1_pt > 35000 && tau2_pt > 25000 && '
                     'jet1_pt > 50000 && jet2_pt > 30000 && '
-                    'MET_et > 20000')
+                    'MET_et > 20000 && trigger == 1')
 bkg_cut = vbf_selection & 'tau1_charge * tau2_charge != -1'  # nOS
 sig_cut = vbf_selection & 'tau1_charge * tau2_charge == -1'  # OS
 
