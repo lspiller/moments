@@ -1,5 +1,5 @@
 
-Install cython and run::
+Install cython, build, and run::
 
     pip install --user cython
     make
