@@ -57,6 +57,7 @@ def plot(ax, mom, order, bkg, sig):
             label='Background', alpha=0.7)
     ax.hist(sig_mom, normed=1, histtype='stepfilled',
             label='Signal', alpha=0.7)
+    ax.set_xlabel('{0} {1:d}'.format(mom.__name__, order))
 
 
 fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -65,4 +66,4 @@ plot(ax2, FWM, 2, bkg_arr, sig_arr)
 ax1.legend()
 ax2.legend()
 plt.tight_layout()
-plt.show()
+plt.savefig('moments.png')
