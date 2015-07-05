@@ -53,14 +53,21 @@ sig_arr = kinematics(sig_arr)
 def plot(ax, mom, order, bkg, sig):
     bkg_mom = mom(order, bkg)
     sig_mom = mom(order, sig)
-    ax.hist(bkg_mom, normed=1, histtype='stepfilled',
-            label='Background', alpha=0.7)
-    ax.hist(sig_mom, normed=1, histtype='stepfilled',
-            label='Signal', alpha=0.7)
+    lo = min(bkg_mom.min(), sig_mom.min())
+    hi = max(bkg_mom.max(), sig_mom.max())
+    pad = (hi - lo) * 0.1
+    bins = np.linspace(lo - pad, hi + pad, 50)
+    b_content, _, _ = ax.hist(
+        bkg_mom, bins=bins, normed=1, histtype='stepfilled',
+        label='Background', alpha=0.7)
+    s_content, _, _ = ax.hist(
+        sig_mom, bins=bins, normed=1, histtype='stepfilled',
+        label='Signal', alpha=0.7)
     ax.set_xlabel('{0} {1:d}'.format(mom.__name__, order))
+    ax.set_ylim([0, max(b_content.max(), s_content.max()) * 1.5])
 
 
-fig, (ax1, ax2) = plt.subplots(1, 2)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
 plot(ax1, HCM, 2, bkg_arr, sig_arr)
 plot(ax2, FWM, 2, bkg_arr, sig_arr)
 ax1.legend()
