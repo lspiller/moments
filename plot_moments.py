@@ -67,10 +67,12 @@ def plot(ax, mom, order, bkg, sig):
     ax.set_ylim([0, max(b_content.max(), s_content.max()) * 1.5])
 
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
-plot(ax1, HCM, 2, bkg_arr, sig_arr)
-plot(ax2, FWM, 2, bkg_arr, sig_arr)
-ax1.legend()
-ax2.legend()
-plt.tight_layout()
-plt.savefig('moments.png')
+for order in range(1, 11):
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
+    plot(ax1, HCM, order, bkg_arr, sig_arr)
+    plot(ax2, FWM, order, bkg_arr, sig_arr)
+    ax1.legend()
+    ax2.legend()
+    plt.tight_layout()
+    plt.savefig('moment_{0:d}.png'.format(order))
+    plt.clf()
