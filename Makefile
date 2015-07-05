@@ -6,3 +6,4 @@ moments:
 clean:
 	rm -rf build
 	rm -f moments.so 
+	rm -f moments.c

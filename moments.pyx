@@ -2,8 +2,9 @@ from scipy import special
 import numpy as np
 cimport numpy as np
 cimport cython
+np.import_array()
 
-from numpy import empty, dot
+from numpy import empty
 from libc.math cimport cos, acos, sqrt
 
 
